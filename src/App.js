@@ -10,6 +10,9 @@ import LocationsIdComponent from "./page/LocationsIdComponent";
 import EpisodeComponent from "./page/EpisodeComponent";
 import EpisodeIdComponent from "./page/EpisodeIdComponent";
 import NoneFound from "./page/NoneFound";
+import LoginComponent from "./page/LoginComponent";
+import PrivateRoute from "./component/PrivateRoute";
+import {AuthProvider} from "./Context/AuthContext";
 
 function App() {
   const element = useRoutes([
@@ -17,6 +20,10 @@ function App() {
       path: '/',
       element: <HomeComponent/>
     },
+      {
+          path: '/login',
+          element: <LoginComponent/>
+      },
       {
           path: '/hero',
           element: <HeroComponent/>,
@@ -50,8 +57,10 @@ function App() {
   ])
   return (
       <>
-        <Header/>
-          {element}
+          <AuthProvider>
+              <Header/>
+                  {element}
+        </AuthProvider>
       </>
   );
 }
